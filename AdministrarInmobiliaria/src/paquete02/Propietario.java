@@ -9,6 +9,49 @@ package paquete02;
  *
  * @author reroes
  */
-public class Propietario {
-    
+import java.io.Serializable;
+
+public class Propietario implements Serializable {
+
+    String nPropietario;
+    String aPropietario;
+    String cPropietario;
+
+    public Propietario(String n, String a, String i) {
+        nPropietario = n;
+        aPropietario = a;
+        cPropietario = i;
+    }
+
+    public void establecerNombrePropietario(String n) {
+        nPropietario = n;
+    }
+
+    public void establecerApellidoPropietario(String n) {
+        aPropietario = n;
+    }
+
+    public void establecerCedulaPropietario(String n) {
+        cPropietario = n;
+    }
+
+    public String obtenerNombrePropietario() {
+        return nPropietario;
+    }
+
+    public String obtenerApellidoPropietario() {
+        return aPropietario;
+    }
+
+    public String obtenerCedulaPropietario() {
+        return cPropietario;
+    }
+
+    @Override
+    public String toString() {
+        String valor = String.format("%s - %s - %s\n",
+                 obtenerNombrePropietario(),
+                obtenerApellidoPropietario(), obtenerCedulaPropietario());
+        return valor;
+    }
 }
