@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete06;
+package paquete03;
 
 /**
  *
@@ -10,21 +10,21 @@ package paquete06;
  */
 import java.io.*;
 import java.util.*;
-public class ArchivoEscrituraCasa {
+public class EscrituraArchivoSecuencialBarrio {
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Casa registro;
-    private ArrayList<Casa> casas;
-    public ArchivoEscrituraCasa(String n) {
+    private Barrio registro;
+    private ArrayList<Barrio> barrios;
+    public EscrituraArchivoSecuencialBarrio(String n) {
         nombreArchivo = n;
-        establecerCasas();
+        establecerBarrios();
         
         try {
             
             salida = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
-            if (casas.size() > 0) {
-                for (int i = 0; i < casas.size(); i++) {
-                    establecerRegistro(casas.get(i));
+            if (barrios.size() > 0) {
+                for (int i = 0; i < barrios.size(); i++) {
+                    establecerRegistro(barrios.get(i));
                     establecerSalida();
                 }
             }
@@ -45,14 +45,15 @@ public class ArchivoEscrituraCasa {
         }
     }
     
-    public void establecerRegistro(Casa n) {
+    public void establecerRegistro(Barrio n) {
         registro = n;
     }
     
-    public void establecerCasas() {
-        ArchivoEscrituraCasa co = new ArchivoEscrituraCasa(nombreArchivo);
-        co.establecerCasas();
-        casas = co.obtenerCasas();
+    public void establecerBarrios() {
+        LecturaArchivoSecuencialBarrio b = 
+                new LecturaArchivoSecuencialBarrio(nombreArchivo);
+        b.establecerBarrios();
+        barrios = b.obtenerBarrios();
     }
     
     public String obtenerNombreArchivo() {
@@ -63,8 +64,8 @@ public class ArchivoEscrituraCasa {
         return salida;
     }
     
-    public ArrayList<Casa> obtenerCasas() {
-        return casas;
+    public ArrayList<Barrio> obtenerBarrios() {
+        return barrios;
     }
     
     public void cerrarArchivo() {

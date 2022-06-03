@@ -19,11 +19,11 @@ public class Departamento implements Serializable {
     private double precioMetroCuadrado;
     private double metrosCuadrados;
     private double alicuotaMensual;
-    private double valorFinal;
+    private double vFinal;
     private Barrio barrio;
     private Ciudad ciudad;
-    private String nombreEdificio;
-    private String ubicacionEdificio;
+    private String nEdificio;
+    private String uEdificio;
     private Constructora constructora;
     public Departamento(Propietario p, double pmc,double mc,double am, Barrio b,Ciudad c,String ne,String ue,Constructora co){
         propietario = p;
@@ -32,8 +32,8 @@ public class Departamento implements Serializable {
         alicuotaMensual = am;
         barrio = b;
         ciudad = c;
-        nombreEdificio = ne;
-        ubicacionEdificio = ue;
+        nEdificio = ne;
+        uEdificio = ue;
         constructora = co;
     }
     public void establecerPropietario(Propietario n){
@@ -53,7 +53,7 @@ public class Departamento implements Serializable {
     }
     
     public void establecerValorFinal(){
-        valorFinal = ((metrosCuadrados * precioMetroCuadrado) 
+        vFinal = ((metrosCuadrados * precioMetroCuadrado) 
                 + (alicuotaMensual * 12));
     }
     
@@ -66,11 +66,11 @@ public class Departamento implements Serializable {
     }
     
     public void establecerNombreEdificios(String n){
-        nombreEdificio = n;
+        nEdificio = n;
     }
     
     public void establecerUbicacionEdificio(String n){
-        ubicacionEdificio = n;
+        uEdificio = n;
     }
     
     public void establecerConstructora(Constructora n){
@@ -94,7 +94,7 @@ public class Departamento implements Serializable {
     }
     
     public double obtenerValorFinal(){
-        return valorFinal;
+        return vFinal;
     }
     
     public Barrio obtenerBarrio(){
@@ -106,11 +106,11 @@ public class Departamento implements Serializable {
     }
     
     public String obtenerNombreEdificio(){
-        return nombreEdificio;
+        return nEdificio;
     }
     
     public String obtenerUbicacionEdificio(){
-        return ubicacionEdificio;
+        return uEdificio;
     }
     
     public Constructora obtenerConstructora(){

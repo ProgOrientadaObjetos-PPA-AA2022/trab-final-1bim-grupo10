@@ -11,7 +11,7 @@ package paquete02;
 import java.io.*;
 import java.util.*;
 
-public class ArchivoLecturaPropietario {
+public class LecturaArchivoSecuencialPropietario {
 
     private ObjectInputStream entrada;
     private ArrayList<Propietario> propietarios;
@@ -19,7 +19,7 @@ public class ArchivoLecturaPropietario {
     private String identificador;
     private Propietario propietarioBuscado;
 
-    public ArchivoLecturaPropietario(String n) {
+    public LecturaArchivoSecuencialPropietario(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {

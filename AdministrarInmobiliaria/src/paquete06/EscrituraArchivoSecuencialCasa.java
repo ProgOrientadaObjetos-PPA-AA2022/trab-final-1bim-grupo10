@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete04;
+package paquete06;
 
 /**
  *
@@ -10,21 +10,21 @@ package paquete04;
  */
 import java.io.*;
 import java.util.*;
-public class ArchivoEscrituraCiudad {
+public class EscrituraArchivoSecuencialCasa {
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Ciudad registro;
-    private ArrayList<Ciudad> ciudades;
-    public ArchivoEscrituraCiudad(String n) {
+    private Casa registro;
+    private ArrayList<Casa> casas;
+    public EscrituraArchivoSecuencialCasa(String n) {
         nombreArchivo = n;
-        establecerCiudades();
+        establecerCasas();
         
         try {
             
             salida = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
-            if (ciudades.size() > 0) {
-                for (int i = 0; i < ciudades.size(); i++) {
-                    establecerRegistro(ciudades.get(i));
+            if (casas.size() > 0) {
+                for (int i = 0; i < casas.size(); i++) {
+                    establecerRegistro(casas.get(i));
                     establecerSalida();
                 }
             }
@@ -45,14 +45,15 @@ public class ArchivoEscrituraCiudad {
         }
     }
     
-    public void establecerRegistro(Ciudad n) {
+    public void establecerRegistro(Casa n) {
         registro = n;
     }
     
-    public void establecerCiudades() {
-        ArchivoLecturaCiudad c = new ArchivoLecturaCiudad(nombreArchivo);
-        c.establecerCiudades();
-        ciudades = c.obtenerCiudades();
+    public void establecerCasas() {
+        EscrituraArchivoSecuencialCasa co = 
+                new EscrituraArchivoSecuencialCasa(nombreArchivo);
+        co.establecerCasas();
+        casas = co.obtenerCasas();
     }
     
     public String obtenerNombreArchivo() {
@@ -63,8 +64,8 @@ public class ArchivoEscrituraCiudad {
         return salida;
     }
     
-    public ArrayList<Ciudad> obtenerCiudades() {
-        return ciudades;
+    public ArrayList<Casa> obtenerCasas() {
+        return casas;
     }
     
     public void cerrarArchivo() {

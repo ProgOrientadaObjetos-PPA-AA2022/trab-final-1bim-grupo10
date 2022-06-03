@@ -15,8 +15,8 @@ import paquete03.Barrio;
 import paquete04.Ciudad;
 import paquete05.Constructora;
 
+public class Casa implements Serializable {
 
-public class Casa implements Serializable{
     private Propietario propietario;
     private double precioMetroCuadrado;
     private double metrosCuadrados;
@@ -25,7 +25,8 @@ public class Casa implements Serializable{
     private Ciudad ciudad;
     private int numeroCuartos;
     private Constructora constructora;
-    public Casa(double pmc, double mc,int nc,Propietario p,Barrio b,Ciudad c,Constructora co){
+
+    public Casa(double pmc, double mc, int nc, Propietario p, Barrio b, Ciudad c, Constructora co) {
         precioMetroCuadrado = pmc;
         metrosCuadrados = mc;
         numeroCuartos = nc;
@@ -34,81 +35,89 @@ public class Casa implements Serializable{
         ciudad = c;
         constructora = co;
     }
-    public void establecerPropietario(Propietario n){
-        propietario = n;
+
+    public void establecerPropietario(Propietario p) {
+        propietario = p;
     }
-    
-    public Propietario obtenerPropietario(){
-        return propietario;
-    }
-    
-    public void establecerPrecioMetroCuadrado(double n){
+
+    public void establecerPrecioMetroCuadrado(double n) {
         precioMetroCuadrado = n;
     }
-    public double obtenerPrecioMetroCuadrado(){
-        return precioMetroCuadrado;
-    }
-    
-    public void establecerMetrosCuadrados(double n){
+
+    public void establecerMetrosCuadrados(double n) {
         metrosCuadrados = n;
     }
-    public double obtenerNumeroMetrosCuadrados(){
-        return metrosCuadrados;
-    }
-    
-    public void establecerCostoFinal(){
+
+    public void establecerCostoFinal() {
         costoFinal = precioMetroCuadrado * metrosCuadrados;
     }
-    
-    public double obtenerCostoFinal(){
-        return costoFinal;
+
+    public void establecerBarrio(Barrio b) {
+        barrio = b;
     }
-    
-    public void establecerBarrio(Barrio bar){
-        barrio = bar;
+
+    public void establecerCiudad(Ciudad c) {
+        ciudad = c;
     }
-    public Barrio obtenerBarrio(){
-        return barrio;
-    }
-    
-    public void establecerCiudad(Ciudad n){
-        ciudad = n;
-    }
-    public Ciudad obtenerCiudad(){
-        return ciudad;
-    }
-    
-    public void establecerNumeroCuartos(int n){
+
+    public void establecerNumeroCuartos(int n) {
         numeroCuartos = n;
     }
-    public int obtenerNumeroCuartos(){
-        return numeroCuartos;
-    }
-    
-    public void establecerConstructora(Constructora n){
+
+    public void establecerConstructora(Constructora n) {
         constructora = n;
     }
-    public Constructora obtenerConstructoras(){
+
+    public Propietario obtenerPropietario() {
+        return propietario;
+    }
+
+    public double obtenerPrecioMetroCuadrado() {
+        return precioMetroCuadrado;
+
+    }
+
+    public double obtenerNumeroMetrosCuadrados() {
+        return metrosCuadrados;
+    }
+
+    public double obtenerCostoFinal() {
+        return costoFinal;
+    }
+
+    public Barrio obtenerBarrio() {
+        return barrio;
+    }
+
+    public Ciudad obtenerCiudad() {
+        return ciudad;
+    }
+
+    public int obtenerNumeroCuartos() {
+        return numeroCuartos;
+    }
+
+    public Constructora obtenerConstructoras() {
         return constructora;
     }
-    
+
     @Override
     public String toString() {
-        
+
         String cadena = String.format("Informacion casa:\n"
-                + "PROPIETARIO\n"
+                + "\nPROPIETARIO\n"
                 + "Nombres: %s Apellidos: %s Identificacion: %s\n"
                 + "Precio metro cuadrado: %.2f Numero metros Cuadrados: %.2f Numero Cuartos: %d Costo final: %.2f\n"
-                + "BARRIO\n"
+                + "\nBARRIO\n"
                 + "Nombre barrio: %s Referencia: %s\n"
-                + "CIUDAD\n"
+                + "\nCIUDAD\n"
                 + "Nombre Ciudad: %s Nombre Provincia: %s \n"
-                + "CONSTRUCTORA\n"
+                + "\nCONSTRUCTORA\n"
                 + "Nombre Constructora: %s Id Empresa: %s\n",
                 propietario.obtenerNombrePropietario(),
                 propietario.obtenerApellidoPropietario(),
                 propietario.obtenerCedulaPropietario(),
-                precioMetroCuadrado,metrosCuadrados,numeroCuartos,costoFinal,
+                precioMetroCuadrado, metrosCuadrados, numeroCuartos, costoFinal,
                 barrio.obtenerNombreBarrio(),
                 barrio.obtenerReferencia(),
                 ciudad.obtenerNombreCiudad(),

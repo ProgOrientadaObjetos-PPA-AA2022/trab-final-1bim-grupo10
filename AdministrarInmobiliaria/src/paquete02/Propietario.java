@@ -49,9 +49,9 @@ public class Propietario implements Serializable {
 
     @Override
     public String toString() {
-        String valor = String.format("%s - %s - %s\n",
-                 obtenerNombrePropietario(),
+        String cadenaFinal = String.format("%s - %s - %s\n",
+                obtenerNombrePropietario(),
                 obtenerApellidoPropietario(), obtenerCedulaPropietario());
-        return valor;
+        return cadenaFinal;
     }
 }

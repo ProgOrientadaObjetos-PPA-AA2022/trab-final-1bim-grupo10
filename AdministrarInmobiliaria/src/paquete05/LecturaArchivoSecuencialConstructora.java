@@ -10,13 +10,13 @@ package paquete05;
  */
 import java.io.*;
 import java.util.*;
-public class ArchivoLecturaConstructora {
+public class LecturaArchivoSecuencialConstructora {
     private ObjectInputStream entrada;
     private ArrayList<Constructora> constructoras;
     private String nombreArchivo;
     private String identificador;
     private Constructora constructoraBuscada;
-    public ArchivoLecturaConstructora(String n) {
+    public LecturaArchivoSecuencialConstructora(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {

@@ -10,12 +10,12 @@ package paquete05;
  */
 import java.io.*;
 import java.util.*;
-public class ArchivoEscrituraConstructora {
+public class EscrituraArchivoSecuencialConstructora {
     private String nombreArchivo;
     private ObjectOutputStream salida;
     private Constructora registro;
     private ArrayList<Constructora> constructoras;
-    public ArchivoEscrituraConstructora(String n) {
+    public EscrituraArchivoSecuencialConstructora(String n) {
         nombreArchivo = n;
         establecerConstructoras();
         
@@ -50,7 +50,8 @@ public class ArchivoEscrituraConstructora {
     }
     
     public void establecerConstructoras() {
-        ArchivoEscrituraConstructora co = new ArchivoEscrituraConstructora(nombreArchivo);
+        EscrituraArchivoSecuencialConstructora co = 
+                new EscrituraArchivoSecuencialConstructora(nombreArchivo);
         co.establecerConstructoras();
         constructoras = co.obtenerConstructoras();
     }

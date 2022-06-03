@@ -10,13 +10,13 @@ package paquete06;
  */
 import java.io.*;
 import java.util.*;
-public class ArchivoLecturaDepartamento {
+public class LecturaArchivoSecuencialDepartamento {
     private ObjectInputStream entrada;
     private ArrayList<Departamento> departamentos;
     private String nombreArchivo;
     
     
-    public ArchivoLecturaDepartamento(String n) {
+    public LecturaArchivoSecuencialDepartamento(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {
