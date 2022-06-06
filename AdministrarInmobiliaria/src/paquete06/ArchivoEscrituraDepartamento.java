@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete02;
+package paquete06;
 
 /**
  *
@@ -10,37 +10,33 @@ package paquete02;
  */
 import java.io.*;
 import java.util.*;
-
-public class EscrituraArchivoSecuencialPropietario {
-
+public class ArchivoEscrituraDepartamento {
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Propietario registro;
-    private ArrayList<Propietario> propietarios;
-
-    public EscrituraArchivoSecuencialPropietario(String n) {
+    private Departamento registro;
+    private ArrayList<Departamento> departamentos;
+    public ArchivoEscrituraDepartamento(String n) {
         nombreArchivo = n;
-        establecerPropietarios();
-
+        establecerDepartamentos();
+        
         try {
-
+            
             salida = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
-            if (propietarios.size() > 0) {
-                for (int i = 0; i < propietarios.size(); i++) {
-                    establecerRegistro(propietarios.get(i));
+            if (departamentos.size() > 0) {
+                for (int i = 0; i < departamentos.size(); i++) {
+                    establecerRegistro(departamentos.get(i));
                     establecerSalida();
                 }
             }
-
+            
         } catch (IOException IOexception) {
             System.out.println("Error al abrir el archivo");
         }
     }
-
     public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
     }
-
+    
     public void establecerSalida() {
         try {
             salida.writeObject(registro);
@@ -48,37 +44,37 @@ public class EscrituraArchivoSecuencialPropietario {
             System.out.println("Error al escribir en el archivo");
         }
     }
-
-    public void establecerRegistro(Propietario n) {
+    
+    public void establecerRegistro(Departamento n) {
         registro = n;
     }
-
-    public void establecerPropietarios() {
-        EscrituraArchivoSecuencialPropietario p = 
-                new EscrituraArchivoSecuencialPropietario(nombreArchivo);
-        p.establecerPropietarios();
-        propietarios = p.obtenerPropietarios();
+    
+    public void establecerDepartamentos() {
+        ArchivoLecturaDepartamento d = new ArchivoLecturaDepartamento(nombreArchivo);
+        d.establecerDepartamento();
+        departamentos = d.obtenerDepartamentos();
     }
-
+    
     public String obtenerNombreArchivo() {
         return nombreArchivo;
     }
-
+    
     public ObjectOutputStream obtenerSalida() {
         return salida;
     }
-
-    public ArrayList<Propietario> obtenerPropietarios() {
-        return propietarios;
+    
+    public ArrayList<Departamento> obtenerDepartamentos() {
+        return departamentos;
     }
-
+    
     public void cerrarArchivo() {
         try {
             if (salida != null) {
                 salida.close();
             }
-        } catch (IOException ioException) {
+        } 
+        catch (IOException ioException) {
             System.out.println("Error al cerrar el archivo");
-        }
+        } 
     }
 }

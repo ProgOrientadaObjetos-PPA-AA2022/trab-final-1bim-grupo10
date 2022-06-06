@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete03;
+package paquete02;
 
 /**
  *
@@ -10,13 +10,14 @@ package paquete03;
  */
 import java.io.*;
 import java.util.*;
-public class LecturaArchivoSecuencialBarrio {
+
+public class ArchivoLecturaPropietario {
     private ObjectInputStream entrada;
-    private ArrayList<Barrio> barrios;
+    private ArrayList<Propietario> propietarios;
     private String nombreArchivo;
     private String identificador;
-    private Barrio barrioBuscado;
-    public LecturaArchivoSecuencialBarrio(String n) {
+    private Propietario propietarioBuscado;
+    public ArchivoLecturaPropietario(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {
@@ -29,15 +30,15 @@ public class LecturaArchivoSecuencialBarrio {
         }
     }
     
-    public void establecerBarrios() {
-        barrios = new ArrayList<>();
+    public void establecerPropietarios() {
+        propietarios = new ArrayList<>();
         File f = new File(nombreArchivo);
         if (f.exists()) {
             while (true) {
                 
                 try {
-                    Barrio registro = (Barrio) entrada.readObject();
-                    barrios.add(registro);
+                    Propietario registro = (Propietario) entrada.readObject();
+                    propietarios.add(registro);
                 } catch (EOFException endOfFileException) {
                     break;
                 } catch (IOException ex) {
@@ -58,22 +59,24 @@ public class LecturaArchivoSecuencialBarrio {
         identificador = n;
     }
     
-    public void establecerBarrioBuscado() {
+    public void establecerPropietarioBuscado() {
         
         File f = new File(nombreArchivo);
-
+        
         while (true) {
-            
             if (f.exists()) {
                 
                 try {
-                    Barrio registro = (Barrio) entrada.readObject();
-                    if(registro.obtenerNombreBarrio().equals(identificador)){
-                        barrioBuscado = registro;
+                    Propietario registro = (Propietario) entrada.readObject();
+                    
+                    if(registro.obtenerCedula().equals(identificador)){
+                        
+                        propietarioBuscado = registro;
+                        
                         break;
                     }
                 } catch (EOFException endOfFileException) {
-                    break;
+                    return;
                 } catch (IOException ex) {
                     System.out.println("Error al leer el archivo");
                 } catch (ClassNotFoundException ex) {
@@ -85,8 +88,8 @@ public class LecturaArchivoSecuencialBarrio {
         }
     }
     
-    public ArrayList<Barrio> obtenerBarrios() {
-        return barrios;
+    public ArrayList<Propietario> obtenerPropietarios() {
+        return propietarios;
     }
 
     public String obtenerNombreArchivo() {
@@ -97,18 +100,23 @@ public class LecturaArchivoSecuencialBarrio {
         return identificador;
     }
         
-    public Barrio obtenerBarrioBuscado() {
-        return barrioBuscado;
+    public Propietario obtenerPropietarioBuscado() {
+        return propietarioBuscado;
     }
     @Override
     public String toString() {
-        String cadena = "Barrios\n";
-        for (int i = 0; i < barrios.size(); i++) {
-            Barrio b = barrios.get(i);
-            cadena = String.format("%s(%d) %s-%s\n", cadena,
+        String cadena = String.format(
+                    " -----En el sistema se han encontradop %d propietarios------\n",propietarios.size());
+        for (int i = 0; i < propietarios.size(); i++) {
+            Propietario p = propietarios.get(i);
+            cadena = String.format("%sPROPIETARIO Nº %d\n\tNombre: %s\n\t"
+                    + "Apellido: %s\n\tCedula: %s\n"
+                    + "---------------------------------------------------------\n"
+                    , cadena,
                     i + 1,
-                    b.obtenerNombreBarrio(),
-                    b.obtenerReferencia());
+                    p.obtenerNombre(),
+                    p.obtenerApellido(),
+                    p.obtenerCedula());
         }
 
         return cadena;
@@ -123,4 +131,5 @@ public class LecturaArchivoSecuencialBarrio {
             System.out.println("Error al cerrar el archivo");
         }
     }
+
 }

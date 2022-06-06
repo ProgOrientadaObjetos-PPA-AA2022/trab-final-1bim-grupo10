@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete06;
+package paquete04;
 
 /**
  *
@@ -10,21 +10,21 @@ package paquete06;
  */
 import java.io.*;
 import java.util.*;
-public class EscrituraArchivoSecuencialDepartamento {
+public class ArchivoEscrituraCiudad {
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Departamento registro;
-    private ArrayList<Departamento> departamentos;
-    public EscrituraArchivoSecuencialDepartamento(String n) {
+    private Ciudad registro;
+    private ArrayList<Ciudad> ciudades;
+    public ArchivoEscrituraCiudad(String n) {
         nombreArchivo = n;
-        establecerDepartamentos();
+        establecerCiudades();
         
         try {
             
             salida = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
-            if (departamentos.size() > 0) {
-                for (int i = 0; i < departamentos.size(); i++) {
-                    establecerRegistro(departamentos.get(i));
+            if (ciudades.size() > 0) {
+                for (int i = 0; i < ciudades.size(); i++) {
+                    establecerRegistro(ciudades.get(i));
                     establecerSalida();
                 }
             }
@@ -45,15 +45,14 @@ public class EscrituraArchivoSecuencialDepartamento {
         }
     }
     
-    public void establecerRegistro(Departamento n) {
+    public void establecerRegistro(Ciudad n) {
         registro = n;
     }
     
-    public void establecerDepartamentos() {
-        EscrituraArchivoSecuencialDepartamento d = 
-                new EscrituraArchivoSecuencialDepartamento(nombreArchivo);
-        d.establecerDepartamentos();
-        departamentos = d.obtenerDepartamentos();
+    public void establecerCiudades() {
+        ArchivoLecturaCiudad c = new ArchivoLecturaCiudad(nombreArchivo);
+        c.establecerCiudades();
+        ciudades = c.obtenerCiudades();
     }
     
     public String obtenerNombreArchivo() {
@@ -64,8 +63,8 @@ public class EscrituraArchivoSecuencialDepartamento {
         return salida;
     }
     
-    public ArrayList<Departamento> obtenerDepartamentos() {
-        return departamentos;
+    public ArrayList<Ciudad> obtenerCiudades() {
+        return ciudades;
     }
     
     public void cerrarArchivo() {
@@ -77,5 +76,5 @@ public class EscrituraArchivoSecuencialDepartamento {
         catch (IOException ioException) {
             System.out.println("Error al cerrar el archivo");
         } 
-    }
+    } 
 }

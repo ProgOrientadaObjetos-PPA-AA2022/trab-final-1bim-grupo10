@@ -11,47 +11,38 @@ package paquete02;
  */
 import java.io.Serializable;
 
-public class Propietario implements Serializable {
-
-    String nPropietario;
-    String aPropietario;
-    String cPropietario;
-
-    public Propietario(String n, String a, String i) {
-        nPropietario = n;
-        aPropietario = a;
-        cPropietario = i;
+public class Propietario implements Serializable{
+    String nombre;
+    String apellido;
+    String identificacion;
+    public Propietario(String n,String a,String i){
+        nombre = n;
+        apellido = a;
+        identificacion = i;
     }
-
-    public void establecerNombrePropietario(String n) {
-        nPropietario = n;
+    public void establecerNombre(String n){
+        nombre = n;
     }
-
-    public void establecerApellidoPropietario(String n) {
-        aPropietario = n;
+    public void establecerApellido(String n){
+        apellido = n;
     }
-
-    public void establecerCedulaPropietario(String n) {
-        cPropietario = n;
+    public void establecerCedula(String n){
+        identificacion = n;
     }
-
-    public String obtenerNombrePropietario() {
-        return nPropietario;
+    public String obtenerNombre(){
+        return nombre;
     }
-
-    public String obtenerApellidoPropietario() {
-        return aPropietario;
+    public String obtenerApellido(){
+        return apellido;
     }
-
-    public String obtenerCedulaPropietario() {
-        return cPropietario;
+    public String obtenerCedula(){
+        return identificacion;
     }
-
     @Override
-    public String toString() {
-        String cadenaFinal = String.format("%s - %s - %s\n",
-                obtenerNombrePropietario(),
-                obtenerApellidoPropietario(), obtenerCedulaPropietario());
-        return cadenaFinal;
+    public String toString(){
+        String valor = String.format("%s - %s - %s\n"
+                , obtenerNombre(), 
+                 obtenerApellido(), obtenerCedula());
+        return valor;
     }
 }

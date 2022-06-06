@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete02;
+package paquete04;
 
 /**
  *
@@ -10,16 +10,13 @@ package paquete02;
  */
 import java.io.*;
 import java.util.*;
-
-public class LecturaArchivoSecuencialPropietario {
-
+public class ArchivoLecturaCiudad {
     private ObjectInputStream entrada;
-    private ArrayList<Propietario> propietarios;
+    private ArrayList<Ciudad> ciudades;
     private String nombreArchivo;
     private String identificador;
-    private Propietario propietarioBuscado;
-
-    public LecturaArchivoSecuencialPropietario(String n) {
+    private Ciudad ciudadBuscada;
+    public ArchivoLecturaCiudad(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {
@@ -28,19 +25,19 @@ public class LecturaArchivoSecuencialPropietario {
                         new FileInputStream(nombreArchivo));
             } catch (IOException ioException) {
                 System.out.println("Error al abrir el archivo" + ioException);
-            }
+            } 
         }
     }
-
-    public void establecerPropietarios() {
-        propietarios = new ArrayList<>();
+    
+    public void establecerCiudades() {
+        ciudades = new ArrayList<>();
         File f = new File(nombreArchivo);
         if (f.exists()) {
             while (true) {
-
+                
                 try {
-                    Propietario registro = (Propietario) entrada.readObject();
-                    propietarios.add(registro);
+                    Ciudad registro = (Ciudad) entrada.readObject();
+                    ciudades.add(registro);
                 } catch (EOFException endOfFileException) {
                     break;
                 } catch (IOException ex) {
@@ -52,27 +49,27 @@ public class LecturaArchivoSecuencialPropietario {
         }
 
     }
-
+    
     public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
     }
-
+    
     public void establecerIdentificador(String n) {
         identificador = n;
     }
-
-    public void establecerPropietarioBuscado() {
-
+    
+    public void establecerCiudadBuscada() {
+        
         File f = new File(nombreArchivo);
 
         while (true) {
-
+            
             if (f.exists()) {
-
+                
                 try {
-                    Propietario registro = (Propietario) entrada.readObject();
-                    if (registro.obtenerCedulaPropietario().equals(identificador)) {
-                        propietarioBuscado = registro;
+                    Ciudad registro = (Ciudad) entrada.readObject();
+                    if(registro.obtenerNombreCiudad().equals(identificador)){
+                        ciudadBuscada = registro;
                         break;
                     }
                 } catch (EOFException endOfFileException) {
@@ -82,43 +79,44 @@ public class LecturaArchivoSecuencialPropietario {
                 } catch (ClassNotFoundException ex) {
                     System.out.println("No se pudo crear el objeto" + ex);
                 }
-
+                
             }
-
+            
         }
     }
-
-    public ArrayList<Propietario> obtenerPropietarios() {
-        return propietarios;
+    
+    public ArrayList<Ciudad> obtenerCiudades() {
+        return ciudades;
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
     }
-
+    
     public String obtenerIdentificador() {
         return identificador;
     }
-
-    public Propietario obtenerPropietarioBuscado() {
-        return propietarioBuscado;
+        
+    public Ciudad obtenerCiudadBuscada() {
+        return ciudadBuscada;
     }
-
     @Override
     public String toString() {
-        String cadena = "Propietarios\n";
-        for (int i = 0; i < propietarios.size(); i++) {
-            Propietario p = propietarios.get(i);
-            cadena = String.format("%s(%d) %s-%s-%s\n", cadena,
+        String cadena =String.format("--------En el sistema se han encontrado %d ciudades--------\n"
+                + "----------------------------------------------------------\n",ciudades.size());
+        for (int i = 0; i < ciudades.size(); i++) {
+            Ciudad c = ciudades.get(i);
+            cadena = String.format("%sCIUDAD Nº %d\n\tCiudad: %s\n\tProvincia: %s\n"
+                    + "----------------------------------------------------------\n",
+                    cadena,
                     i + 1,
-                    p.obtenerNombrePropietario(),
-                    p.obtenerApellidoPropietario(),
-                    p.obtenerCedulaPropietario());
+                    c.obtenerNombreCiudad(),
+                    c.obtenerNombreProvincia());
         }
 
         return cadena;
     }
-
+    
     public void cerrarArchivo() {
         try {
             if (entrada != null) {
@@ -128,5 +126,4 @@ public class LecturaArchivoSecuencialPropietario {
             System.out.println("Error al cerrar el archivo");
         }
     }
-
 }

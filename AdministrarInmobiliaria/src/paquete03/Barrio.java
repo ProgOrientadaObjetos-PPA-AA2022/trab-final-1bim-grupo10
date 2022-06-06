@@ -11,23 +11,23 @@ package paquete03;
  */
 import java.io.Serializable;
 public class Barrio implements Serializable{
-    String nBarrio;
-    String rBarrio;
-    public Barrio(String nB,String rB){
-        nBarrio = nB;
-        rBarrio = rB;
+    String nombreBarrio;
+    String referencia;
+    public Barrio(String nb,String r){
+        nombreBarrio = nb;
+        referencia = r;
     }
-    public void establecerNombreBarrio(String nB){
-        nBarrio = nB;
+    public void establecerNombreBarrio(String n){
+        nombreBarrio = n;
     }
-    public void establecerReferencia(String rB){
-        rBarrio = rB;
+    public void establecerReferencia(String n){
+        referencia = n;
     }
     public String obtenerNombreBarrio(){
-        return nBarrio;
+        return nombreBarrio;
     }
     public String obtenerReferencia(){
-        return rBarrio;
+        return referencia;
     }
     @Override
     public String toString(){

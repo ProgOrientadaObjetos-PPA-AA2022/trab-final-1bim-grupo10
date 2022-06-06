@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete05;
+package paquete06;
 
 /**
  *
@@ -10,21 +10,21 @@ package paquete05;
  */
 import java.io.*;
 import java.util.*;
-public class EscrituraArchivoSecuencialConstructora {
+public class ArchivoEscrituraCasa {
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Constructora registro;
-    private ArrayList<Constructora> constructoras;
-    public EscrituraArchivoSecuencialConstructora(String n) {
+    private Casa registro;
+    private ArrayList<Casa> casas;
+    public ArchivoEscrituraCasa(String n) {
         nombreArchivo = n;
-        establecerConstructoras();
+        establecerCasas();
         
         try {
             
             salida = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
-            if (constructoras.size() > 0) {
-                for (int i = 0; i < constructoras.size(); i++) {
-                    establecerRegistro(constructoras.get(i));
+            if (casas.size() > 0) {
+                for (int i = 0; i < casas.size(); i++) {
+                    establecerRegistro(casas.get(i));
                     establecerSalida();
                 }
             }
@@ -45,15 +45,14 @@ public class EscrituraArchivoSecuencialConstructora {
         }
     }
     
-    public void establecerRegistro(Constructora n) {
+    public void establecerRegistro(Casa n) {
         registro = n;
     }
     
-    public void establecerConstructoras() {
-        EscrituraArchivoSecuencialConstructora co = 
-                new EscrituraArchivoSecuencialConstructora(nombreArchivo);
-        co.establecerConstructoras();
-        constructoras = co.obtenerConstructoras();
+    public void establecerCasas() {
+        ArchivoLecturaCasa ca = new ArchivoLecturaCasa(nombreArchivo);
+        ca.establecerCasa();
+        casas = ca.obtenerCasas();
     }
     
     public String obtenerNombreArchivo() {
@@ -64,8 +63,8 @@ public class EscrituraArchivoSecuencialConstructora {
         return salida;
     }
     
-    public ArrayList<Constructora> obtenerConstructoras() {
-        return constructoras;
+    public ArrayList<Casa> obtenerCasas() {
+        return casas;
     }
     
     public void cerrarArchivo() {

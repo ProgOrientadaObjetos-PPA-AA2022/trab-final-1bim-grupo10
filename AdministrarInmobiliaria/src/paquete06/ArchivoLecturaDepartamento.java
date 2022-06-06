@@ -10,13 +10,13 @@ package paquete06;
  */
 import java.io.*;
 import java.util.*;
-public class LecturaArchivoSecuencialDepartamento {
+public class ArchivoLecturaDepartamento {
     private ObjectInputStream entrada;
     private ArrayList<Departamento> departamentos;
     private String nombreArchivo;
     
     
-    public LecturaArchivoSecuencialDepartamento(String n) {
+    public ArchivoLecturaDepartamento(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {
@@ -67,33 +67,26 @@ public class LecturaArchivoSecuencialDepartamento {
         String cadena = "Departamentos:\n";
         for (int i = 0; i < departamentos.size(); i++) {
             cadena = String.format("%s(%d) Informacion del Departamento\n"
-                    + "PROPIETARIO\n"
-                    + "\tNombres: %s Apellidos: %s Identificacion: %s\n"
-                    + "ESPECIFICACIONES\n"
-                    + "\tNombre Edificio: %s Ubicación Edificio: %s\n"
-                    + "\tPrecio por metro cuadrado: %.2f Numero de metros cuadrados: %.2f\n"
-                    + "\tValor Alícuota Mensual: %.2f Costo final: %.2f\n"
-                    + "BARRIO\n"
-                    + "\tNombre Barrio: %s Referencia%s\n"
-                    + "CIUDAD\n"
-                    + "\tNombre Ciudad: %s Nombre Provincia: %s\n"
-                    + "CONSTRUCTORA\n"
-                    + "\tNombre Constructora: %s ID Empresa: %s\n", cadena, (i + 1),
-                    departamentos.get(i).obtenerPropietario().obtenerNombrePropietario(), 
-                    departamentos.get(i).obtenerPropietario().obtenerApellidoPropietario(), 
-                    departamentos.get(i).obtenerPropietario().obtenerCedulaPropietario(),
-                    departamentos.get(i).obtenerNombreEdificio(), 
-                    departamentos.get(i).obtenerUbicacionEdificio(),
-                    departamentos.get(i).obtenerPrecioMetroCuadrado(), 
-                    departamentos.get(i).obtenerNumeroMetrosCuadrados(),
-                    departamentos.get(i).obtenerAlicuotaMensual(), 
-                    departamentos.get(i).obtenerValorFinal(),
-                    departamentos.get(i).obtenerBarrio().obtenerNombreBarrio(), 
-                    departamentos.get(i).obtenerBarrio().obtenerReferencia(),
-                    departamentos.get(i).obtenerCiudad().obtenerNombreCiudad(), 
-                    departamentos.get(i).obtenerCiudad().obtenerNombreProvincia(),
-                    departamentos.get(i).obtenerConstructora().obtenerNombreConstructora(), 
-                    departamentos.get(i).obtenerConstructora().obtenerId());
+                    + "PROPIETARIO----------------------------------------------\n"
+                    + "\tNombres: %s\n\tApellidos: %s\n\tCedula: %s\n"
+                    + "ESPECIFICACIONES-----------------------------------------\n"
+                    + "\tEdificio: %s\n\tUbicación del Edificio: %s\n"
+                    + "\tPrecio por metro cuadrado: %.2f\n\tNumero de metros cuadrados: %.2f\n"
+                    + "\tValor Alícuota Mensual: %.2f\n\tCosto final: %.2f\n"
+                    + "BARRIO---------------------------------------------------\n"
+                    + "\tBarrio: %s\n\tReferencia%s\n"
+                    + "CIUDAD---------------------------------------------------\n"
+                    + "\tCiudad: %s\n\tNombre Provincia: %s\n"
+                    + "CONSTRUCTORA---------------------------------------------\n"
+                    + "\tNombre Constructora: %s\n\tID: %s\n"
+                    + "----------------------------------------------------------\n", cadena, (i + 1),
+                    departamentos.get(i).obtenerPropietario().obtenerNombre(), departamentos.get(i).obtenerPropietario().obtenerApellido(), departamentos.get(i).obtenerPropietario().obtenerCedula(),
+                    departamentos.get(i).obtenerNombreEdificio(), departamentos.get(i).obtenerUbicacionEdificio(),
+                    departamentos.get(i).obtenerPrecioMetroCuadrado(), departamentos.get(i).obtenerNumeroMetrosCuadrados(),
+                    departamentos.get(i).obtenerAlicuotaMensual(), departamentos.get(i).obtenerValorFinal(),
+                    departamentos.get(i).obtenerBarrio().obtenerNombreBarrio(), departamentos.get(i).obtenerBarrio().obtenerReferencia(),
+                    departamentos.get(i).obtenerCiudad().obtenerNombreCiudad(), departamentos.get(i).obtenerCiudad().obtenerNombreProvincia(),
+                    departamentos.get(i).obtenerConstructora().obtenerNombreConstructora(), departamentos.get(i).obtenerConstructora().obtenerId());
         }
 
         return cadena;

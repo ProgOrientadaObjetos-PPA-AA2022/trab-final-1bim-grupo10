@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete04;
+package paquete03;
 
 /**
  *
@@ -10,13 +10,13 @@ package paquete04;
  */
 import java.io.*;
 import java.util.*;
-public class LecturaArchivoSecuencialCiudad {
+public class ArchivoLecturaBarrio {
     private ObjectInputStream entrada;
-    private ArrayList<Ciudad> ciudades;
+    private ArrayList<Barrio> barrios;
     private String nombreArchivo;
     private String identificador;
-    private Ciudad ciudadBuscada;
-    public LecturaArchivoSecuencialCiudad(String n) {
+    private Barrio barrioBuscado;
+    public ArchivoLecturaBarrio(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {
@@ -29,15 +29,15 @@ public class LecturaArchivoSecuencialCiudad {
         }
     }
     
-    public void establecerCiudades() {
-        ciudades = new ArrayList<>();
+    public void establecerBarrios() {
+        barrios = new ArrayList<>();
         File f = new File(nombreArchivo);
         if (f.exists()) {
             while (true) {
                 
                 try {
-                    Ciudad registro = (Ciudad) entrada.readObject();
-                    ciudades.add(registro);
+                    Barrio registro = (Barrio) entrada.readObject();
+                    barrios.add(registro);
                 } catch (EOFException endOfFileException) {
                     break;
                 } catch (IOException ex) {
@@ -58,7 +58,7 @@ public class LecturaArchivoSecuencialCiudad {
         identificador = n;
     }
     
-    public void establecerCiudadBuscada() {
+    public void establecerBarrioBuscado() {
         
         File f = new File(nombreArchivo);
 
@@ -67,9 +67,9 @@ public class LecturaArchivoSecuencialCiudad {
             if (f.exists()) {
                 
                 try {
-                    Ciudad registro = (Ciudad) entrada.readObject();
-                    if(registro.obtenerNombreCiudad().equals(identificador)){
-                        ciudadBuscada = registro;
+                    Barrio registro = (Barrio) entrada.readObject();
+                    if(registro.obtenerNombreBarrio().equals(identificador)){
+                        barrioBuscado = registro;
                         break;
                     }
                 } catch (EOFException endOfFileException) {
@@ -85,8 +85,8 @@ public class LecturaArchivoSecuencialCiudad {
         }
     }
     
-    public ArrayList<Ciudad> obtenerCiudades() {
-        return ciudades;
+    public ArrayList<Barrio> obtenerBarrios() {
+        return barrios;
     }
 
     public String obtenerNombreArchivo() {
@@ -97,18 +97,21 @@ public class LecturaArchivoSecuencialCiudad {
         return identificador;
     }
         
-    public Ciudad obtenerCiudadBuscada() {
-        return ciudadBuscada;
+    public Barrio obtenerBarrioBuscado() {
+        return barrioBuscado;
     }
     @Override
     public String toString() {
-        String cadena = "Ciudades\n";
-        for (int i = 0; i < ciudades.size(); i++) {
-            Ciudad c = ciudades.get(i);
-            cadena = String.format("%s(%d) %s-%s\n", cadena,
+        String cadena = "Barrios\n";
+        for (int i = 0; i < barrios.size(); i++) {
+            Barrio b = barrios.get(i);
+            cadena = String.format("%sBARRIO Nº%d -----------------------------------------------"
+                    + "\n\tBarrio: %s\n\tReferencia: %s\n"
+                    + "----------------------------------------------------------\n"
+                    , cadena,
                     i + 1,
-                    c.obtenerNombreCiudad(),
-                    c.obtenerNombreProvincia());
+                    b.obtenerNombreBarrio(),
+                    b.obtenerReferencia());
         }
 
         return cadena;

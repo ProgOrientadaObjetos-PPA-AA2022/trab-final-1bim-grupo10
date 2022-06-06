@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package paquete04;
+package paquete05;
 
 /**
  *
@@ -10,21 +10,21 @@ package paquete04;
  */
 import java.io.*;
 import java.util.*;
-public class EscrituraArchivoSecuencialCiudad {
+public class ArchivoEscrituraConstructora {
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Ciudad registro;
-    private ArrayList<Ciudad> ciudades;
-    public EscrituraArchivoSecuencialCiudad(String n) {
+    private Constructora registro;
+    private ArrayList<Constructora> constructoras;
+    public ArchivoEscrituraConstructora(String n) {
         nombreArchivo = n;
-        establecerCiudades();
+        establecerConstructoras();
         
         try {
             
             salida = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
-            if (ciudades.size() > 0) {
-                for (int i = 0; i < ciudades.size(); i++) {
-                    establecerRegistro(ciudades.get(i));
+            if (constructoras.size() > 0) {
+                for (int i = 0; i < constructoras.size(); i++) {
+                    establecerRegistro(constructoras.get(i));
                     establecerSalida();
                 }
             }
@@ -45,15 +45,14 @@ public class EscrituraArchivoSecuencialCiudad {
         }
     }
     
-    public void establecerRegistro(Ciudad n) {
+    public void establecerRegistro(Constructora n) {
         registro = n;
     }
     
-    public void establecerCiudades() {
-        LecturaArchivoSecuencialCiudad c = 
-                new LecturaArchivoSecuencialCiudad(nombreArchivo);
-        c.establecerCiudades();
-        ciudades = c.obtenerCiudades();
+    public void establecerConstructoras() { 
+        ArchivoLecturaConstructora co = new ArchivoLecturaConstructora(nombreArchivo); 
+        co.establecerConstructoras();
+        constructoras = co.obtenerConstructoras();
     }
     
     public String obtenerNombreArchivo() {
@@ -64,8 +63,8 @@ public class EscrituraArchivoSecuencialCiudad {
         return salida;
     }
     
-    public ArrayList<Ciudad> obtenerCiudades() {
-        return ciudades;
+    public ArrayList<Constructora> obtenerConstructoras() {
+        return constructoras;
     }
     
     public void cerrarArchivo() {
